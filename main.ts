@@ -1,6 +1,10 @@
 // Tiny stack VM: a complete interpreter for the tiny stack VM ISA
 // (32-bit wrapping ints, 256-value stack, 64-deep calls, 256 words of
 // memory, all 10 traps). Plain JS, no deps, deterministic.
+// Trap exit codes: 0 halt, 2 stack underflow, 3 stack overflow,
+// 4 div/mod by zero, 5 bad opcode, 6 bad memory address, 7 call depth,
+// 8 RET on empty call stack, 9 PC out of range, 10 step limit,
+// 11 output limit.
 import{readdirSync as R,readFileSync as F,mkdirSync as K,writeFileSync as W}from"node:fs";
 function run(p,I){
 let D=new Int32Array(256),C=new Int32Array(64),M=new Int32Array(256),O=new Uint8Array(65536),s=0,c=0,t=0,u=0,l=0,g=0,n=p.length,E=x=>({o:O.slice(0,l),c:x});
